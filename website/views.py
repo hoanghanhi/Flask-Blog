@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, jsonify
 from flask.helpers import flash, url_for
 from flask_login import login_required, current_user
-from .models import Post, User, Comment, Like
+from .models import Post, User, Comment, Like, Follow
 from .initial import db 
 
 views = Blueprint('views', __name__)
@@ -108,3 +108,34 @@ def like(post_id):
         db.session.commit()
 
     return jsonify({"likes": len(post.likes), "liked": current_user.id in map(lambda x: x.author, post.likes)})
+
+@views.route("/profile/<author>")
+def profile(author):
+    user = User.query.filter_by(id=author).first()
+    follower = current_user
+    hasfollow = Follow()
+    if follower.is_authenticated:
+        hasfollow = Follow.query.filter_by(follower_id=follower.id, followed_id=user.id).first()
+
+    if not user:
+        flash('No user with that username exists.', category='error')
+        return redirect(url_for('views.home'))
+    
+    return render_template("userprofile.html", Blogger = user,user = current_user, hasfollow = hasfollow)
+
+@views.route("/follow_user/<user_id>", methods=['GET'])
+@login_required
+def follow(user_id):
+    followed = User.query.filter_by(id=id).first()
+    follower = current_user
+    hasfollow = Follow.query.filter_by(follower_id=follower.id, followed_id=followed.id).first()
+    if not follower:
+        flash('User does not exists.', category='error')
+    elif hasfollow:
+        db.session.delete(hasfollow)
+        db.session.commit()
+    else:
+        hasfollow = Follow(follower_id= follower.id, followed_id=followed.id)
+        db.session.add(hasfollow)
+        db.session.commit()
+    return redirect(url_for('views.profile', author = followed.id))
