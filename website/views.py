@@ -126,7 +126,7 @@ def profile(author):
 @views.route("/follow_user/<user_id>", methods=['GET'])
 @login_required
 def follow(user_id):
-    followed = User.query.filter_by(id=id).first()
+    followed = User.query.filter_by(id=user_id).first()
     follower = current_user
     hasfollow = Follow.query.filter_by(follower_id=follower.id, followed_id=followed.id).first()
     if not follower:

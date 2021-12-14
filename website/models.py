@@ -4,6 +4,13 @@ from flask_login import UserMixin
 from sqlalchemy.sql import func
 from datetime import datetime
 
+class Follow(db.Model):
+    follower_id = db.Column(db.Integer, db.ForeignKey('user.id'),
+    primary_key=True)
+    followed_id = db.Column(db.Integer, db.ForeignKey('user.id'),
+    primary_key=True)
+    timestamp = db.Column(db.DateTime, default=datetime.now)
+
 
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -27,12 +34,6 @@ class Like(db.Model):
     author = db.Column(db.Integer, db.ForeignKey('user.id', ondelete="CASCADE"), nullable=False)
     post_id = db.Column(db.Integer, db.ForeignKey('post.id', ondelete="CASCADE"), nullable=False)
 
-class Follow(db.Model):
-    follower_id = db.Column(db.Integer, db.ForeignKey('user.id'),
-    primary_key=True)
-    followed_id = db.Column(db.Integer, db.ForeignKey('user.id'),
-    primary_key=True)
-    timestamp = db.Column(db.DateTime, default=datetime.now)
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
