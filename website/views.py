@@ -46,6 +46,26 @@ def delete_post(id):
 
     return redirect(url_for('views.home'))
 
+@views.route("/edit-post/<id>", methods = ['GET', 'POST'])
+@login_required
+def edit_post(id):
+    post = Post.query.filter_by(id=id).first()
+    if not post:
+        flash("Post does not exist.", category='error')
+    elif current_user.id != post.author:
+        flash('You do not have permission to delete this post.', category='error')
+    elif request.method == 'POST':
+        text = request.form.get('text')
+        if len(text) < 1:
+            flash('post is too short!', category='error')
+        else:
+            post.text = text
+            db.session.commit()
+            flash('Post is updated!', category='success')
+            return redirect(url_for('views.home'))
+    return render_template('edit_post.html', user= current_user, post= post)
+
+
 @views.route("/posts/<username>")
 @login_required
 def posts(username):
