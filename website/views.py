@@ -8,7 +8,6 @@ views = Blueprint('views', __name__)
 
 @views.route('/') 
 @views.route("/home")
-
 def home():
     posts = Post.query.all()
     return render_template("home.html", user=current_user, posts=posts)
@@ -105,11 +104,11 @@ def create_comment(post_id):
         else:
             flash('Post does not exist.', category='error')
 
-    return redirect(url_for('views.home'))
+    return redirect(url_for('views.post', id=post_id))
 
-@views.route("/delete-comment/<comment_id>")
+@views.route("/delete-comment/<comment_id>/<post_id>")
 @login_required
-def delete_comment(comment_id):
+def delete_comment(comment_id,post_id):
     comment = Comment.query.filter_by(id=comment_id).first()
 
     if not comment:
@@ -120,7 +119,7 @@ def delete_comment(comment_id):
         db.session.delete(comment)
         db.session.commit()
 
-    return redirect(url_for('views.home'))
+    return redirect(url_for('views.post', id=post_id))
 
 @views.route("/like-post/<post_id>", methods=['POST'])
 @login_required

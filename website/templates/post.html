@@ -48,6 +48,53 @@
                 </div>
               </div>
             <p>{{post.text}}</p>
+            <div class="card-body">
+              <div class="collapse" id="comments-{{post.id}}">
+                <div class="card">
+                  <div class="card-body" id="comments-expanded-{{post.id}}">
+                    {% for comment in post.comments %}
+                    <div class="like">
+                      <div class="post-preview">
+                        <a href="/posts/{{comment.user.username}}"
+                          >{{comment.user.username}}</a>:
+                      </div>
+                      <div>
+                        <small class="text-muted"> {{comment.date_created}}</small>
+                        {% if user.id == comment.author or user.id == post.author %}
+                        <a href="/delete-comment/{{comment.id}}/{{post.id}}"><button type="button" class="btn btn-secondary">Delete</button></a>
+                        {% endif %}
+                      </div>
+                    </div>
+                    <p>{{comment.text}}</p>
+                    <hr/>
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+              <p class="card-text">
+                {% if post.comments|length > 0 %}
+                <a data-bs-toggle="collapse" href="#comments-{{post.id}}" role="button">
+                  <small>View {{post.comments|length}} Comments</small>
+                </a>
+                {% else %}
+                <small class="text-muted">No Comments</small>
+                {% endif %}
+              </p>
+              <form
+                class="input-group mb-3"
+                method="POST"
+                action="/create-comment/{{post.id}}"
+              >
+                <input
+                  type="text"
+                  id="text"
+                  name="text"
+                  class="form-control"
+                  placeholder="Comment something!"
+                />
+                <button type="submit" class="btn btn-primary">Comment</button>
+              </form>
+            </div>
         </div>
       </div>
     </div>

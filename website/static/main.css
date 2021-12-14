@@ -260,6 +260,16 @@ header.masthead .post-heading .meta a {
   }
 }
 
+textarea:hover, textarea:focus, textarea:active{
+  box-shadow: none !important;
+  border-color: #00799b !important;
+}
+
+input:hover, input:focus, input:active{
+  box-shadow: none !important;
+  border-color: #00799b !important;
+}
+
 footer {
   padding: 50px 0 65px;
 }
@@ -276,6 +286,7 @@ footer .copyright {
 }
 
 .btn {
+  box-shadow: none;
   font-size: 14px;
   font-weight: 800;
   padding: 15px 25px;
@@ -285,20 +296,22 @@ footer .copyright {
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
+.btn:active,
+.btn:focus,
+.btn:focus:active{
+  box-shadow: none !important;
+}
+
 .btn-primary {
   background-color: #00799b !important;
   border-color: #00799b !important;
 }
 
-.btn-primary:hover, .btn-primary:focus, .btn-primary:active {
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active{
   color: #fff;
+  box-shadow: none;
   background-color: #00657b !important;
   border-color: #00657b !important;
-}
-
-.btn-lg {
-  font-size: 16px;
-  padding: 25px 35px;
 }
 
 .content-section {
