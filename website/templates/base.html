@@ -3,6 +3,12 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}" crossorigin="anonymous">
+        <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+        <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
         <link
         rel="stylesheet"
         href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -31,28 +37,38 @@
         <title>{% block title %}Home{% endblock %}</title>
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <button 
-            class="navbar-toggler" 
-            type="button" 
-            data-toggle="collapse" 
-            data-target="#navbar"
-            >
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbar">
-                <div class="navbar-nav">
-                    <a class="nav-item nav-link" id="home" href="/">Home</a>
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">Flask Blog App</a>
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                  Menu
+                  <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                  <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-item nav-link" id="home" href="/">Home</a>
+                    </li>
                     {% if user.is_authenticated %}
-                    <a class="nav-item nav-link" id="logout" href="/profile/{{user.id}}">Go to your profile</a>
-                    <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
+                    <li class="nav-item">
+                        <a class="nav-item nav-link" id="logout" href="/profile/{{user.id}}">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
+                    </li>
                     {% else %}
-                    <a class="nav-item nav-link" id="login" href="/login">Login</a>
-                    <a class="nav-item nav-link" id="signUp" href="/sign-up">Sign Up</a>
+                    <li class="nav-item">
+                        <a class="nav-item nav-link" id="login" href="/login">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-item nav-link" id="signUp" href="/sign-up">Sign Up</a>
+                    </li>
                     {% endif %}
+                  </ul>
                 </div>
             </div>
         </nav>
+        {% block header %} {% endblock %}
         {% with messages = get_flashed_messages(with_categories=true) %} {% if
             messages %} {% for category, message in messages %} {% if category ==
             'error' %}
