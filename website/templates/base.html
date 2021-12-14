@@ -37,7 +37,6 @@
     </head>
     {% block body %}
     <body>
-
         <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
             <div class="container">
                 <a class="navbar-brand" href="/">Flask Blog App</a>
@@ -52,7 +51,10 @@
                     </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-item nav-link" id="logout" href="/profile/{{user.id}}">Profile</a>
+                        <a class="nav-item nav-link" id="profile" href="/profile/{{user.id}}">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-item nav-link" id="create-post" href="/create-post">Create Post</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
@@ -87,7 +89,7 @@
             </button>
             </div>
             {% endif %} {% endfor %} {% endif %} {% endwith %}
-        <div class="container-fluid">{% block content %} {% endblock %}</div>
+        <div class="container-sm">{% block content %} {% endblock %}</div>
         <script
         src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -118,4 +120,14 @@
         <script src="../static/scroll.js"></script>
     </body>
     {% endblock %}
+    {% block footer %}{% endblock %}
+    <footer>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+              <p class="text text-muted">Made with ❤ by Vi and Nhi</p>
+            </div>
+          </div>
+        </div>
+    </footer>
 </html>

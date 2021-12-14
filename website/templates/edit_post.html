@@ -1,35 +1,48 @@
-{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content
-    %}
-<h1 align="center">Edit post here</h1>
-
-
-<form method="POST" style="background-color: rgb(255, 44, 79); border-radius: 6px;" enctype="multipart/form-data">
-    <div class="container-cus">
-        <p style="color: white;">Editing your post here:</p>
-        <div class="flex">
-          <label for="title">Title:</label>
-        {% block texttitle %} 
-         <textarea name="title" id="title" class="form-control" rows="3">{{post.title}}</textarea>
-        {% endblock %}
-        </div>
-        <br>
-        <div class="flex">
-          <label for="text">Text:</label>
-          {% block text %} 
-          <textarea name="text" id="text" class="form-control" rows="8">{{post.text}}</textarea>
-          {% endblock %}
-        <br />
-        <div align="center">
-            <button type="submit" class="btn btn-primary">Confirm Update</button>
-        </div>
-    </div>
-</form>
-<br />
-
-<div align="center">
-  <a href="/"
-    ><button type="button" class="btn btn-lg btn-secondary">Back</button></a
-  >
+{% extends "base.html" %} {% block title %}Home{% endblock %}
+{% block body %}
+{{ super() }}
+<style>
+    body {
+        background-image: url('https://wallpaperaccess.com/full/1691682.jpg'); 
+        background-size: cover;
+        padding-top: 67px;
+    }
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 670px;
+        width: 100%;
+        background-color: #212529;
+        opacity: 0.5;
+        z-index: -1;
+    }
+</style>
+{% endblock %}
+{% block content%}
+<div class="overlay"></div>
+<div class="content-section">
+  <form method="POST" enctype="multipart/form-data">
+      <fieldset class="form-group">
+          <legend class="border-bottom mb-4">Editting Your Post</legend>
+          <div class="form-group">
+              <label for="titile">Titile</label>
+                {% block texttitle %} 
+                <textarea name="title" id="title" class="form-control" rows="3">{{post.title}}</textarea>
+                {% endblock %}
+              <br/>
+              <label for="text">Text</label>
+                {% block text %} 
+                <textarea name="text" id="text" class="form-control" rows="8">{{post.text}}</textarea>
+                {% endblock %}
+              <br/>
+              <div align="center">
+                <button type="submit" class="btn btn-primary">Confirm</button>
+                <a href="/"><button type="button" class="btn btn-secondary">Back</button></a>
+            </div>
+          </div>
+      </fieldset>
+  </form>
 </div>
 
 {% endblock %}

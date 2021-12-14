@@ -7,10 +7,11 @@ body {
 p {
   line-height: 1.5;
   margin: 30px 0;
+  text-align: justify;
 }
 
 p a {
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 h1,
@@ -202,6 +203,7 @@ header.masthead .post-heading .meta {
 }
 
 header.masthead .post-heading .meta a {
+  text-decoration: none;
   color: #fff;
 }
 
@@ -215,6 +217,7 @@ header.masthead .post-heading .meta a {
 }
 
 .post-preview > a {
+  text-decoration: none;
   color: #212529;
 }
 
@@ -255,63 +258,6 @@ header.masthead .post-heading .meta a {
   .post-preview > a > .post-title {
     font-size: 36px;
   }
-}
-
-.floating-label-form-group {
-  font-size: 14px;
-  position: relative;
-  margin-bottom: 0;
-  padding-bottom: 0.5em;
-  border-bottom: 1px solid #dee2e6;
-}
-
-.floating-label-form-group input,
-.floating-label-form-group textarea {
-  font-size: 1.5em;
-  position: relative;
-  z-index: 1;
-  padding: 0;
-  resize: none;
-  border: none;
-  border-radius: 0;
-  background: none;
-  box-shadow: none !important;
-  font-family: 'Lora', 'Times New Roman', serif;
-}
-
-.floating-label-form-group input::-webkit-input-placeholder,
-.floating-label-form-group textarea::-webkit-input-placeholder {
-  color: #868e96;
-  font-family: 'Lora', 'Times New Roman', serif;
-}
-
-.floating-label-form-group label {
-  font-size: 0.85em;
-  line-height: 1.764705882em;
-  position: relative;
-  z-index: 0;
-  top: 2em;
-  display: block;
-  margin: 0;
-  transition: top 0.3s ease, opacity 0.3s ease;
-  opacity: 0;
-}
-
-.floating-label-form-group .help-block {
-  margin: 15px 0;
-}
-
-.floating-label-form-group-with-value label {
-  top: 0;
-  opacity: 1;
-}
-
-.floating-label-form-group-with-focus label {
-  color: #0085A1;
-}
-
-form .form-group:first-child .floating-label-form-group {
-  border-top: 1px solid #dee2e6;
 }
 
 footer {
@@ -363,4 +309,34 @@ footer .copyright {
     border-radius: 3px;
     margin-bottom: 20px;
     z-index: 1;
+}
+
+footer {
+  padding: 20px 0 20px;
+  background-color: #1f2022;
+  margin-top: 20px;
+}
+
+footer .list-inline {
+  margin: 0;
+  padding: 0;
+}
+
+footer .text {
+  font-size: 14px;
+  margin-bottom: 0;
+  text-align: center;
+  letter-spacing: 1.3px;
+}
+
+.like{
+  margin-top: 0px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.like span{
+  font-size: larger;
 }

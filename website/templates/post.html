@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block header %}
+<header class="masthead" style="background-image: url('https://www.quirkbooks.com/sites/default/files/u1269/thought-catalog-214785.jpg')">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="post-heading">
+          <h1>{{post.title}}</h1>
+          <span class="meta">Posted by
+            <a href="/profile/{{post.author}}">{{post.user.username}}</a>
+            on {{post.date_created}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+{% endblock %}
+{% block title %}Home{% endblock %}
+{% block content%}
+<article>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="like">
+                {% if user.id == post.author %}
+                <div class="button">
+                    <a href="/edit-post/{{post.id}}"><button type="button" class="btn btn-primary">Edit</button></a>
+                    <a href="/delete-post/{{post.id}}"><button type="button" class="btn btn-secondary">Delete</button></a>
+                </div>
+                {% endif %}
+                <div>
+                <span id="likes-count-{{post.id}}">
+                {{ post.likes|length }}</span> 
+                {% if user.id in post.likes|map(attribute="author")|list %}
+                <i
+                  class="fas fa-thumbs-up fa-2x"
+                  id="like-button-{{post.id}}"
+                  onclick="like({{post.id}})"
+                ></i>
+                {% else %}
+                <i
+                  class="far fa-thumbs-up fa-2x"
+                  id="like-button-{{post.id}}"
+                  onclick="like({{post.id}})"
+                ></i>
+                {% endif %}
+                </div>
+              </div>
+            <p>{{post.text}}</p>
+        </div>
+      </div>
+    </div>
+  </article>
+{% endblock %}

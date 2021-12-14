@@ -47,6 +47,14 @@ def delete_post(id):
 
     return redirect(url_for('views.home'))
 
+@views.route("/post/<id>", methods = ['GET', 'POST'])
+def post(id):
+    post = Post.query.filter_by(id=id).first()
+    if not post:
+        flash("Post does not exist.", category='error')
+        
+    return render_template('post.html', user= current_user, post= post)
+
 @views.route("/edit-post/<id>", methods = ['GET', 'POST'])
 @login_required
 def edit_post(id):

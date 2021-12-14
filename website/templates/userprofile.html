@@ -3,7 +3,7 @@
 {{ super() }}
 <style>
     body {
-        background-image: url('https://wallpaperaccess.com/full/1691682.jpg'); 
+        background-image: url('https://images.unsplash.com/photo-1542435503-956c469947f6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80'); 
         background-size: cover;
         padding-top: 67px;
         max-width: 100%;
@@ -19,24 +19,28 @@
         opacity: 0.5;
         z-index: -1;
     }
-    .container-fluid{
+    nav .container{
+        background-color: none !important;
+    }
+    .container-sm{
         background-color: white;
+        max-width: 100%;
     }
 </style>
 {% endblock %}
 {% block content%}
 <div class="overlay"></div>
-    <h1 align="center" style="padding-top: 5%;">{{Blogger.username}} Profile</h1>
+    <h1 align="center" style="padding-top: 5%;">{{Blogger.username}}'s Profile</h1>
     <div class="container-fluid" style="background-color: rgb(255, 255, 255); box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); border-radius: 10px;">
         <div class="row" style="padding-top: 2%;"></div>
         <div class="row">
             <div class="col-sm">
                 <div class="row">
                     <div class="col-2">
-                        <p><b>username:</b></p>
-                        <p><b>email:</b></p>
-                        <p><b>post:</b></p>
-                        <p><b>follower:</b></p>
+                        <p><b>Username:</b></p>
+                        <p><b>Email:</b></p>
+                        <p><b>Post:</b></p>
+                        <p><b>Follower:</b></p>
                     </div>
                     <div class="col-6">
                         <p>{{Blogger.username}}</p>
@@ -49,26 +53,26 @@
             <div class="col-sm">
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <a href="" class = "link-dark">Follower</a>
-                        <span class="badge badge-primary badge-pill">{{Blogger.followers|length}}</span>
+                        <a href="#followers" class = "link-dark">Follower</a>
+                        <span class="badge badge-secondary badge-pill">{{Blogger.followers|length}}</span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <a href="" class = "link-dark">Following</a>
-                        <span class="badge badge-primary badge-pill">{{Blogger.followed|length}}</span>
+                        <a href="following" class = "link-dark">Following</a>
+                        <span class="badge badge-secondary badge-pill">{{Blogger.followed|length}}</span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <a href="/posts/{{Blogger.id}}" class = "link-dark">Posts</a>
-                        <span class="badge badge-primary badge-pill">{{Blogger.posts|length}}</span>
+                        <a href="/posts/{{Blogger.username}}" class = "link-dark">Posts</a>
+                        <span class="badge badge-secondary badge-pill">{{Blogger.posts|length}}</span>
                     </li>
                     {% if user.is_authenticated %}
                         {% if user.id != Blogger.id %}
                             {% if hasfollow %}
                             <li class="list-group-item d-flex flex-row-reverse justify-content-between align-items-center">
-                                <a class="btn btn-danger" href="/follow_user/{{Blogger.id}}" role="button" >Unfollow</a>
+                                <a class="btn btn-primary" href="/follow_user/{{Blogger.id}}" role="button" >Unfollow</a>
                             </li>
                             {% else %}
                             <li class="list-group-item d-flex flex-row-reverse justify-content-between align-items-center">
-                                <a class="btn btn-danger" href="/follow_user/{{Blogger.id}}" role="button" >Follow</a>
+                                <a class="btn btn-primary" href="/follow_user/{{Blogger.id}}" role="button" >Follow</a>
                             </li>
                             {% endif %}
                         {% endif %}
@@ -79,6 +83,7 @@
         <div class="row" style="padding-top: 10px;"></div>
     </div>
     <div style="margin-top: 5%;"></div>
+    <section id="followers">
     <h1 align="center">Followers</h1>
     <table class="table table-dark">
         <thead>
@@ -102,6 +107,8 @@
           {% endfor %}
         </tbody>
     </table>
+    </section>
+    <section id="following">
     <h1 align="center">Following</h1>
     <table class="table table-dark">
         <thead>
@@ -125,7 +132,7 @@
           {% endfor %}
         </tbody>
     </table>
-        
+</section>
     {% endblock %}
     
     {% block action %}

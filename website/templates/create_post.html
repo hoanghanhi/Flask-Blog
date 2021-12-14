@@ -1,27 +1,48 @@
 {% extends "base.html" %} {% block title %}Home{% endblock %}
-{% block content %}
-<h1 align="center">Make a Post</h1>
+{% block body %}
+{{ super() }}
+<style>
+    body {
+        background-image: url('https://raw.githubusercontent.com/don-quixotee/template-for-flask-blog-app/master/img/home-bg.jpg'); 
+        background-size: cover;
+        padding-top: 67px;
+    }
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 670px;
+        width: 100%;
+        background-color: #212529;
+        opacity: 0.5;
+        z-index: -1;
+    }
+</style>
+{% endblock %}
+{% block content%}
+<div class="overlay"></div>
+<div class="content-section">
+  <form method="POST" enctype="multipart/form-data">
+      <fieldset class="form-group">
+          <legend class="border-bottom mb-4">Create Post</legend>
+          <div class="form-group">
+              <label for="title">Title</label>
+                {% block texttitle %} 
+                <textarea name="title" id="title" class="form-control" rows="3"></textarea>
+                {% endblock %}
+              <br/>
+              <label for="text">Text</label>
+                {% block text %} 
+                <textarea name="text" id="text" class="form-control" rows="8"></textarea>
+                {% endblock %}
+              <br/>
+              <div align="center">
+                <button type="submit" class="btn btn-primary">Confirm</button>
+                <a href="/"><button type="button" class="btn btn-secondary">Back</button></a>
+            </div>
+          </div>
+      </fieldset>
+  </form>
+</div>
 
-<form method="POST">
-    <div class="flex">
-      <label for="title">Title:</label>
-    {% block texttitle %} 
-     <textarea name="title" id="title" class="form-control" rows="3"></textarea>
-    {% endblock %}
-    </div>
-    <br>
-    <div class="flex">
-      <label for="text">Text:</label>
-      {% block text %} 
-      <textarea name="text" id="text" class="form-control" rows="8"></textarea>
-      {% endblock %}
-
-    </div>
-    <div class="d-flex justify-content-around">
-    {%block btn%}  <button type="submit" class="btn btn-success"><h4>Post</h4></button>{%endblock%}
-      <a href="/home"
-        ><button type="button" class="btn btn-secondary"><h4>Back</h4></button></a
-      >
-    </div>
-</form>
 {% endblock %}
