@@ -1,47 +1,71 @@
 {% extends "base.html" %} {% block title %}Sign Up{% endblock %}
-
-{% block content %}
-<form method="POST">
-    <h3 align="center">Sign Up</h3>
-    <div class="form-group">
-        <label for="email">Email Address</label>
-        <input 
-            type="text" 
-            id="email" 
-            name="email" 
-            class="form-control" 
-            placeholder="Enter Email"
-        />
-        <label for="username">Username</label>
-        <input 
-            type="text" 
-            id="username" 
-            name="username" 
-            class="form-control" 
-            placeholder="Enter Username"
-        />
-        <label for="password1">Password</label>
-        <input 
-            type="password" 
-            id="password1" 
-            name="password1" 
-            class="form-control" 
-            placeholder="Enter Password"
-        />
-        <label for="password2">Password Again</label>
-        <input 
-            type="password" 
-            id="password2" 
-            name="password2" 
-            class="form-control" 
-            placeholder="Enter Password Again"
-        />
-        <br/>
-        <div align="center"><button class="btn btn-primary" type="submit">Sign Up</button>
-        </div>
-        
-    </div>
-</form>
-
-
+{% block body %}
+{{ super() }}
+<style>
+    body {
+        background-image: url('https://wallpaperaccess.com/full/1691682.jpg'); 
+        background-size: cover;
+        padding-top: 67px;
+    }
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 670px;
+        width: 100%;
+        background-color: #212529;
+        opacity: 0.5;
+        z-index: -1;
+    }
+</style>
 {% endblock %}
+{% block content %}
+<div class="overlay"></div>
+    <div class="content-section">
+        <form method="POST">
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Sign Up</legend>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input 
+                        type="text" 
+                        id="email" 
+                        name="email" 
+                        class="form-control" 
+                        placeholder="Enter Email"
+                    />
+                    <br/>
+                    <label for="username">Username</label>
+                    <input 
+                        type="text" 
+                        id="username" 
+                        name="username" 
+                        class="form-control" 
+                        placeholder="Enter Username"
+                    />
+                    <br/>
+                    <label for="password1">Password</label>
+                    <input 
+                        type="password" 
+                        id="password1" 
+                        name="password1" 
+                        class="form-control" 
+                        placeholder="Enter Password"
+                    />
+                    <br/>
+                    <label for="password2">Confirm Password</label>
+                    <input 
+                        type="password" 
+                        id="password2" 
+                        name="password2" 
+                        class="form-control" 
+                        placeholder="Confirm Password"
+                    />
+                    <br/>
+                    <div align="center"><button class="btn btn-primary" type="submit">Sign Up</button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+{% endblock content %}
