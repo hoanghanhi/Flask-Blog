@@ -18,11 +18,12 @@ def home():
 def create_post():
     if request.method == "POST":
         text = request.form.get('text')
+        title = request.form.get('title')
 
         if not text:
             flash('Post cannot be empty', category='error')
         else:
-            post = Post(text=text, author=current_user.id)
+            post = Post(title=title, text=text, author=current_user.id)
             db.session.add(post)
             db.session.commit()
             flash('Post created!', category='success')
@@ -55,10 +56,12 @@ def edit_post(id):
     elif current_user.id != post.author:
         flash('You do not have permission to delete this post.', category='error')
     elif request.method == 'POST':
+        title = request.form.get('title')
         text = request.form.get('text')
         if len(text) < 1:
             flash('post is too short!', category='error')
         else:
+            post.title = title
             post.text = text
             db.session.commit()
             flash('Post is updated!', category='success')
