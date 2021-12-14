@@ -6,7 +6,18 @@
 <form method="POST" style="background-color: rgb(255, 44, 79); border-radius: 6px;" enctype="multipart/form-data">
     <div class="container-cus">
         <p style="color: white;">Editing your post here:</p>
-        <textarea name="text" id="text" class="form-control">{{post.text}}</textarea>
+        <div class="flex">
+          <label for="title">Title:</label>
+        {% block texttitle %} 
+         <textarea name="title" id="title" class="form-control" rows="3">{{post.title}}</textarea>
+        {% endblock %}
+        </div>
+        <br>
+        <div class="flex">
+          <label for="text">Text:</label>
+          {% block text %} 
+          <textarea name="text" id="text" class="form-control" rows="8">{{post.text}}</textarea>
+          {% endblock %}
         <br />
         <div align="center">
             <button type="submit" class="btn btn-primary">Confirm Update</button>
