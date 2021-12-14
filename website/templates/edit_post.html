@@ -1,0 +1,24 @@
+{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content
+    %}
+<h1 align="center">Edit post here</h1>
+
+
+<form method="POST" style="background-color: rgb(255, 44, 79); border-radius: 6px;" enctype="multipart/form-data">
+    <div class="container-cus">
+        <p style="color: white;">Editing your post here:</p>
+        <textarea name="text" id="text" class="form-control">{{post.text}}</textarea>
+        <br />
+        <div align="center">
+            <button type="submit" class="btn btn-primary">Confirm Update</button>
+        </div>
+    </div>
+</form>
+<br />
+
+<div align="center">
+  <a href="/"
+    ><button type="button" class="btn btn-lg btn-secondary">Back</button></a
+  >
+</div>
+
+{% endblock %}
