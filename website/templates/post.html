@@ -34,13 +34,13 @@
                 {{ post.likes|length }}</span> 
                 {% if user.id in post.likes|map(attribute="author")|list %}
                 <i
-                  class="fas fa-thumbs-up fa-2x"
+                  class="fa fa-thumbs-o-up fa-2x"
                   id="like-button-{{post.id}}"
                   onclick="like({{post.id}})"
                 ></i>
                 {% else %}
                 <i
-                  class="far fa-thumbs-up fa-2x"
+                  class="fa fa-thumbs-up fa-2x"
                   id="like-button-{{post.id}}"
                   onclick="like({{post.id}})"
                 ></i>
